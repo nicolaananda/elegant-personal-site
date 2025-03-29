@@ -27,13 +27,15 @@ const Navigation = () => {
     <header 
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-sm py-4 shadow-sm" : "py-6"
+        isScrolled 
+          ? "glass-effect py-4" 
+          : "py-6 bg-transparent"
       )}
     >
       <div className="container-custom flex items-center justify-between">
         <RouterLink 
           to="/" 
-          className="font-medium text-xl tracking-tight hover:opacity-70 transition-opacity"
+          className="font-semibold text-xl text-primary tracking-tight hover:opacity-80 transition-opacity"
         >
           John Doe
         </RouterLink>
@@ -45,8 +47,8 @@ const Navigation = () => {
                 <RouterLink 
                   to={link.path}
                   className={cn(
-                    "link-hover text-sm",
-                    location.pathname === link.path ? "after:w-full" : ""
+                    "link-hover text-sm font-medium",
+                    location.pathname === link.path ? "text-primary after:w-full" : "text-foreground/80"
                   )}
                 >
                   {link.name}
@@ -90,26 +92,26 @@ const MobileMenu = () => {
       >
         <span 
           className={cn(
-            "h-0.5 w-6 bg-current transition-transform", 
+            "h-0.5 w-6 bg-primary transition-transform", 
             isOpen && "translate-y-2 rotate-45"
           )}
         />
         <span 
           className={cn(
-            "h-0.5 w-6 bg-current transition-opacity", 
+            "h-0.5 w-6 bg-primary transition-opacity", 
             isOpen && "opacity-0"
           )}
         />
         <span 
           className={cn(
-            "h-0.5 w-6 bg-current transition-transform", 
+            "h-0.5 w-6 bg-primary transition-transform", 
             isOpen && "-translate-y-2 -rotate-45"
           )}
         />
       </button>
       
       {isOpen && (
-        <div className="fixed inset-0 top-16 bg-background z-40 animate-fade-in">
+        <div className="fixed inset-0 top-16 glass-effect z-40 animate-fade-in">
           <nav className="container-custom py-12">
             <ul className="flex flex-col space-y-8">
               {navLinks.map((link) => (
@@ -117,8 +119,8 @@ const MobileMenu = () => {
                   <RouterLink 
                     to={link.path}
                     className={cn(
-                      "text-2xl font-medium",
-                      location.pathname === link.path ? "text-primary" : "text-muted-foreground"
+                      "text-2xl font-medium transition-colors",
+                      location.pathname === link.path ? "text-primary" : "text-foreground/70 hover:text-primary"
                     )}
                     onClick={() => setIsOpen(false)}
                   >
