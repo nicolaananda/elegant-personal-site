@@ -161,7 +161,7 @@ These properties only affect compositing, avoiding the expensive layout and pain
 
 ### Use transform instead of position properties
 
-```css
+\`\`\`css
 /* Instead of this */
 .element {
   animation: move 1s linear infinite;
@@ -179,17 +179,17 @@ These properties only affect compositing, avoiding the expensive layout and pain
   0% { transform: translate(0, 0); }
   100% { transform: translate(100px, 100px); }
 }
-```
+\`\`\`
 
 ### Promote elements to their own layer
 
-```css
+\`\`\`css
 .element {
   transform: translateZ(0);
   /* or */
   will-change: transform;
 }
-```
+\`\`\`
 
 ## Measuring Animation Performance
 
