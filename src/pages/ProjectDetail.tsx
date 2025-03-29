@@ -26,100 +26,82 @@ const ProjectDetail: React.FC = () => {
   
   return (
     <Layout>
-      <article className="pt-12 pb-20">
-        <div className="container-custom">
-          <Link 
-            to="/work"
-            className="inline-flex items-center text-sm mb-12 hover:text-primary/80 transition-colors"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Projects
-          </Link>
+      <article className="container-custom max-w-4xl">
+        <Link 
+          to="/work"
+          className="inline-flex items-center text-sm mb-8 hover:text-primary/80 transition-colors"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Link>
+        
+        <div>
+          <h1 className="text-3xl font-normal mb-4">{project.title}</h1>
           
-          <div className="max-w-4xl">
-            <h1 className="font-medium mb-6">{project.title}</h1>
-            
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tags.map((tag, index) => (
-                <span 
-                  key={index}
-                  className="text-sm px-3 py-1 bg-secondary rounded-full"
-                >
-                  {tag}
-                </span>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.tags.map((tag, index) => (
+              <span 
+                key={index}
+                className="text-xs px-3 py-1 bg-secondary rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          
+          <p className="text-muted-foreground mb-8">
+            {project.description}
+          </p>
+        </div>
+        
+        <div className="rounded-md overflow-hidden mb-10">
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-auto"
+          />
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <h3 className="text-sm font-medium mb-2">Role</h3>
+            <p className="text-sm text-muted-foreground">{project.role}</p>
+          </div>
+          
+          <div>
+            <h3 className="text-sm font-medium mb-2">Technologies</h3>
+            <div className="text-sm text-muted-foreground">
+              {project.technologies?.map((tech, index) => (
+                <span key={index} className="block">{tech}</span>
               ))}
             </div>
-            
-            <p className="text-xl text-muted-foreground mb-8">
-              {project.description}
-            </p>
           </div>
+        </div>
+        
+        <div className="prose prose-sm text-muted-foreground max-w-none mb-10">
+          <p>{project.content}</p>
+        </div>
+        
+        <div className="mt-12 pt-4 border-t border-border flex justify-between items-center">
+          <Button asChild variant="outline" size="sm">
+            <Link to="/work">
+              All projects
+            </Link>
+          </Button>
           
-          <div className="rounded-lg overflow-hidden mb-12">
-            <img
-              src={project.imageUrl}
-              alt={project.title}
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div>
-              <h3 className="font-medium mb-2">Role</h3>
-              <p className="text-muted-foreground">{project.role}</p>
-            </div>
-            
-            <div>
-              <h3 className="font-medium mb-2">Technologies</h3>
-              <ul className="text-muted-foreground">
-                {project.technologies?.map((tech, index) => (
-                  <li key={index}>{tech}</li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-medium mb-2">Links</h3>
-              {project.externalUrl && (
-                <a
-                  href={project.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary hover:underline"
-                >
-                  View Project
-                  <ArrowUpRight className="ml-1 h-4 w-4" />
-                </a>
-              )}
-            </div>
-          </div>
-          
-          <div className="max-w-3xl prose prose-neutral">
-            <p>{project.content}</p>
-          </div>
-          
-          <div className="mt-16 pt-8 border-t border-border flex justify-between items-center">
-            <Button asChild variant="outline">
-              <Link to="/work">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                All Projects
-              </Link>
+          {project.externalUrl && (
+            <Button asChild size="sm">
+              <a
+                href={project.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center"
+              >
+                View project
+                <ArrowUpRight className="ml-2 h-3 w-3" />
+              </a>
             </Button>
-            
-            {project.externalUrl && (
-              <Button asChild>
-                <a
-                  href={project.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center"
-                >
-                  View Live Project
-                  <ArrowUpRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            )}
-          </div>
+          )}
         </div>
       </article>
     </Layout>

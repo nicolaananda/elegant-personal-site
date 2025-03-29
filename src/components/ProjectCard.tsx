@@ -23,41 +23,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Link 
       to={`/work/${slug}`}
-      className={cn(
-        "group block overflow-hidden transition-all duration-300",
-        featured ? "md:col-span-2" : ""
-      )}
+      className="group block"
     >
-      <div className="overflow-hidden rounded-lg mb-4">
-        <div 
-          className="aspect-video bg-secondary relative w-full h-full transform group-hover:scale-105 transition-transform duration-500"
-        >
-          <img 
-            src={imageUrl} 
-            alt={title}
-            className="w-full h-full object-cover"
-          />
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+        <div className="md:col-span-4 overflow-hidden rounded-md">
+          <div className="aspect-[4/3] bg-muted overflow-hidden">
+            <img 
+              src={imageUrl} 
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
         </div>
-      </div>
-      
-      <div className="space-y-2">
-        <h3 className="text-xl font-medium group-hover:text-primary/80 transition-colors">
-          {title}
-        </h3>
-        
-        <p className="text-muted-foreground text-sm line-clamp-2">
-          {description}
-        </p>
-        
-        <div className="flex flex-wrap gap-2 mt-2">
-          {tags.map((tag, index) => (
-            <span 
-              key={index}
-              className="text-xs px-2 py-1 bg-secondary rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="md:col-span-8">
+          <h3 className="text-base font-medium mb-1 group-hover:text-primary/70 transition-colors">
+            {title}
+          </h3>
+          <p className="text-sm text-muted-foreground mb-2">
+            {description}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {tags.slice(0, 3).map((tag, index) => (
+              <span 
+                key={index}
+                className="text-xs px-2 py-0.5 bg-secondary rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </Link>
